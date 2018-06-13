@@ -1,0 +1,25 @@
+body {
+    background-image: url("../images/stardust.png");
+    text-align: center;
+}
+
+h1 {
+    font-size: 28px;
+    color: rgb(2, 133, 167);
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 20px;
+    color: rgb(67, 150, 223);
+}
+
+p {
+    color: rgb(218, 165,32);
+}
+
+/* Teal 0285A7 -- 2 133 167
+Blue 4396DF -- 67 150 223
+Goldenrod DAA520 -- 218 165 32
+Grey 807E66 -- 128 126 102
+Yellow DAC800 -- 218 200 0 */
