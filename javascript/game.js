@@ -12,11 +12,17 @@ var compword = word[Math.floor(Math.random() * (word.length))];
     console.log("computer word: " + compword);
 
 //underscores of word shown
-// function underscores (compword) {
-//    for word 
-// }
+function underscores(a) {
+    var characters = "";
+    for (i=0; i<a.length; i++) {
+            characters += "-";
+    }
+    console.log(characters); 
+    return characters;
+    }
 
-wordlocation.innerText = compword.length;
+//display underscores on page
+wordlocation.innerHTML = underscores(compword);
 
 
 //player guesses letter
@@ -42,6 +48,6 @@ document.onkeyup = function(event) {
 
     //connect to html
     document.getElementById("guessedletters").innerHTML = guesses;
-    document.getElementById("guessesrem").innerHTML = guesses;
+    document.getElementById("guessesrem").innerHTML = guessesrem;
 }
 
