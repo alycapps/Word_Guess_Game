@@ -24,23 +24,37 @@ function underscores(a) {
 //display underscores on page
 wordlocation.innerHTML = underscores(compword);
 
-
 //player guesses letter
 document.onkeyup = function(event) {
     guess = event.key;
     console.log("player guess: " + guess);
-     guesses.push(event.key);
-     console.log("guesses array: " + guesses);
+     
 
     //check if letter was chosen and not number or something
     if (~alphabet.indexOf(guess)) {
             console.log("woohoo you guessed a letter")
+            guesses.push(event.key);
+            console.log("guesses array: " + guesses);
+
+        // check if letter has already been chosen
+        //if guess is not last letter in guesses array print new letter chosen
+        if ((guesses.indexOf(guess) + 1) === guesses.length) {
+            console.log("new letter chosen");
+                console.log(guesses.indexOf(guess));
+                console.log(guesses.length);
+            //if correct fill in the blank
+                
+            //else guesses go down & letter shown in letters guessed
+        
         }
 
-        //if correct fill in the blank
-
-        //else guesses go down & letter shown in letters guessed
-
+        // else if duplicate letter
+        else {
+            console.log("duplicate letter chosen");
+            console.log(guesses.indexOf(guess));
+            console.log(guesses.length);
+        }
+    }
     //choose a letter alert
     else {
         alert("Please choose a letter.");
