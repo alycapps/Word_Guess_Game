@@ -2,7 +2,8 @@ var word = ["Miss Saigon", "Les Mis", "Cabaret", "A Bronx Tale", "Anastasia", "T
 var guesses = document.getElementById("guessedletters");
 guesses = [];
 var guessesrem = document.getElementById("guessesrem");
-guessesrem.innerHTML = 8;
+var startingguess = 8;
+guessesrem.innerText = startingguess;
 var wordlocation = document.getElementById("wordlocation");
 var wins = document.getElementById("wins");
 wins = 0;
@@ -68,6 +69,8 @@ document.onkeyup = function(event) {
                 //else guesses go down & letter shown in letters guessed
                 else {
                     console.log("wrong letter");
+                    startingguess--;
+                    console.log("guessesrem" + startingguess);
                 }
             }
 
@@ -84,6 +87,6 @@ document.onkeyup = function(event) {
 
     //connect to html
     document.getElementById("guessedletters").innerHTML = guesses;
-    document.getElementById("guessesrem").innerHTML = guessesrem;
+    document.getElementById("guessesrem").innerHTML = startingguess;
 }
 
