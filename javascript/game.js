@@ -4,6 +4,10 @@ guesses = [];
 var guessesrem = document.getElementById("guessesrem");
 guessesrem.innerHTML = 8;
 var wordlocation = document.getElementById("wordlocation");
+var wins = document.getElementById("wins");
+wins = 0;
+var losses = document.getElementById("losses");
+losses = 0;
 
 
 //random word chosen
@@ -21,12 +25,18 @@ function underscores(a) {
         //add else statement for spaces
         else {
             characters += "-";
-            console.log("a" + a.charAt[i]);
         }
     }
     console.log(characters); 
     return characters;
-    }
+}
+
+// function correctguess(b) {
+//     compword.toLowerCase();
+//     for (var i=0; i<compword.length; i++) {
+//         if (compword.includes(b));
+//     }
+// }
 
 //display underscores on page
 wordlocation.innerHTML = underscores(compword);
@@ -39,29 +49,33 @@ document.onkeyup = function(event) {
 
     //check if letter was chosen and not number or something
         if (event.keyCode >=65 && event.keyCode <=90) {
-            console.log("woohoo you guessed a letter")
             guesses.push(event.key);
             console.log("guesses array: " + guesses);
 
-        // check if letter has already been chosen
-        //if guess is not last letter in guesses array print new letter chosen
-        if (guesses.indexOf(guess) === guesses.length -1) {
-            console.log("new letter chosen");
-            console.log(guesses.indexOf(guess));
-            console.log(guesses.length);
-            //if correct fill in the blank
+            // check if letter has already been chosen
+            //if guess is not last letter in guesses array print new letter chosen
+            if (guesses.indexOf(guess) === guesses.length -1) {
+  
                 
-            //else guesses go down & letter shown in letters guessed
-        
-        }
+                //won game
+                
 
-        // else if duplicate letter
-        else {
-            alert("Please chose a new letter");
-            console.log("duplicate letter chosen");
-            console.log(guesses.indexOf(guess));
-            console.log(guesses.length);
-        }
+                //if correct fill in the blank
+                if (compword.includes(guess)) {
+                    console.log("correct letter");
+                }
+
+                //else guesses go down & letter shown in letters guessed
+                else {
+                    console.log("wrong letter");
+                }
+            }
+
+            // else if duplicate letter
+            else {
+                alert("Please chose a new letter");
+                //remove duplicate letter from guesses array
+            }
     }
     //choose a letter alert
     else {
