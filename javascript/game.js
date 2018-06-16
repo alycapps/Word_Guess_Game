@@ -36,28 +36,35 @@ function underscores(a) {
 function replace(b) {
     for (var w=0; w < compword.length; w++) {
         var index = compword.indexOf(b);
-        console.log("index" + index);
-        console.log("1stguess" + displayedword);
-        displayedword.replace(displayedword.charAt(index), guess);
-        console.log("guess" + displayedword);
-        wordlocation.innerHTML = displayedword;
+        if (b === compword[w]) {
+        //    displayedword[w] = b;
+           var m = displayedword[0, w] + b + displayedword[w+1];
+            console.log(displayedword[0, w] + b + displayedword[w+1]);
+        }
+        // console.log("index" + index);
+        // console.log("1stguess" + displayedword);
+        // displayedword.replace(displayedword.charAt(index), guess);
+        // console.log("guess" + displayedword);
+        console.log("displayedword" + displayedword);
+        wordlocation.innerHTML = m;
     }
 }
 
 //display underscores on page
 var displayedword = underscores(compword);
-wordlocation.innerHTML = underscores(compword);
+wordlocation.innerHTML = displayedword;
 
 //player guesses letter
 document.onkeyup = function(event) {
-    guess = event.key;
+    var guess = event.key;
     console.log("player guess: " + guess);
      
 
     //check if letter was chosen and not number or something
         if (event.keyCode >=65 && event.keyCode <=90) {
             guesses.push(event.key);
-            console.log("guesses array: " + guesses);
+            console.log("guesses array: " + guesses)
+            var currentword = wordlocation.innerText;
 
             // check if letter has already been chosen
             //if guess is not last letter in guesses array print new letter chosen
@@ -67,13 +74,26 @@ document.onkeyup = function(event) {
                 //won game
                 if (displayedword === compword) {
                     wins++;
+                    startingguess = 8;
+                    guesses = [];
                 }
         
                 //if correct fill in the blank
                 else if (compword.includes(guess)) {
                     console.log("correct letter");
                     // fill in blanks with guessed letters
-                    replace(guess);
+                    var rewriteword = ""; 
+                    for (var w=0; w < compword.length; w++) {
+                        if (guess == compword[w]) {
+                            rewriteword += guess;
+                        }
+                        else {
+                            rewriteword += currentword[w];
+                        }
+                        console.log("replaced" + rewriteword);
+                    }
+                    wordlocation.innerText = rewriteword;
+                    
                 }
 
                 //else guesses go down & letter shown in letters guessed
@@ -86,6 +106,7 @@ document.onkeyup = function(event) {
                     lossesnumber++;
                     console.log("losses" + lossesnumber);
                     startingguess = 8;
+                    guesses = [];
                 }
             }
 
