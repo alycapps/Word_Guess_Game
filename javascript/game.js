@@ -70,7 +70,7 @@ document.onkeyup = function(event) {
                     wordlocation.innerText = rewriteword;
                     //won game
                         if (rewriteword == compword) {
-                            wins++;
+                            winsnumber++;
                             startingguess = 8;
                             guesses = [];
                             console.log("you win")

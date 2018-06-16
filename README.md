@@ -1,2 +1,2 @@
 # Word_Guess_Game
-Hangman like game
+This is a fun Hangman style game. All of the words are Broadway shows and the purpose of this game is purely entertainment. 
