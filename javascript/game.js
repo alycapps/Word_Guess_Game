@@ -42,17 +42,16 @@ document.onkeyup = function(event) {
     var guess = event.key;
     console.log("player guess: " + guess);
      
-
     //check if letter was chosen and not number or something
         if (event.keyCode >=65 && event.keyCode <=90) {
-            guesses.push(event.key);
             console.log("guesses array: " + guesses)
             var currentword = wordlocation.innerText;
 
             // check if letter has already been chosen
             //if guess is not last letter in guesses array print new letter chosen
-            if (guesses.indexOf(guess) === guesses.length -1) {
-        
+            if (guesses.indexOf(guess) === -1) {
+                guesses.push(event.key);
+
                 //if correct fill in the blank
                 if (compword.includes(guess)) {
                     console.log("correct letter");
