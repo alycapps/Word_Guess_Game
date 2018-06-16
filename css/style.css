@@ -1,6 +1,18 @@
 body {
     background-image: url("../images/stardust.png");
+    
     text-align: center;
+}
+
+.container {
+    background-image: url("../images/curtains.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 400px;
+}
+
+.container2 {
+    padding: 70px;
 }
 
 h1 {
@@ -15,11 +27,11 @@ h2 {
 }
 
 p {
-    color: rgb(218, 165,32);
+    color: darkslategray;
 }
 
 #wordlocation {
-    color: rgb(218, 200, 0);
+    color: grey);
     font-size: 25px;
 }
 /* Teal 0285A7 -- 2 133 167
