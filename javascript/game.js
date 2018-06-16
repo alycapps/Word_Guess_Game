@@ -6,10 +6,11 @@ var startingguess = 8;
 guessesrem.innerText = startingguess;
 var wordlocation = document.getElementById("wordlocation");
 var wins = document.getElementById("wins");
-wins = 0;
+var winsnumber = 0;
+wins.innerText = winsnumber;
 var losses = document.getElementById("losses");
-losses = 0;
-
+var lossesnumber = 0;
+losses.innerText = lossesnumber;
 
 //random word chosen
 var compword = word[Math.floor(Math.random() * (word.length))];
@@ -32,14 +33,19 @@ function underscores(a) {
     return characters;
 }
 
-// function correctguess(b) {
-//     compword.toLowerCase();
-//     for (var i=0; i<compword.length; i++) {
-//         if (compword.includes(b));
-//     }
-// }
+function replace(b) {
+    for (var w=0; w < compword.length; w++) {
+        var index = compword.indexOf(b);
+        console.log("index" + index);
+        console.log("1stguess" + displayedword);
+        displayedword.replace(displayedword.charAt(index), guess);
+        console.log("guess" + displayedword);
+        wordlocation.innerHTML = displayedword;
+    }
+}
 
 //display underscores on page
+var displayedword = underscores(compword);
 wordlocation.innerHTML = underscores(compword);
 
 //player guesses letter
@@ -59,18 +65,27 @@ document.onkeyup = function(event) {
   
                 
                 //won game
-                
-
+                if (displayedword === compword) {
+                    wins++;
+                }
+        
                 //if correct fill in the blank
-                if (compword.includes(guess)) {
+                else if (compword.includes(guess)) {
                     console.log("correct letter");
+                    // fill in blanks with guessed letters
+                    replace(guess);
                 }
 
                 //else guesses go down & letter shown in letters guessed
-                else {
+                else if (startingguess > 0) {
                     console.log("wrong letter");
                     startingguess--;
-                    console.log("guessesrem" + startingguess);
+                }
+
+                else {
+                    lossesnumber++;
+                    console.log("losses" + lossesnumber);
+                    startingguess = 8;
                 }
             }
 
@@ -88,5 +103,7 @@ document.onkeyup = function(event) {
     //connect to html
     document.getElementById("guessedletters").innerHTML = guesses;
     document.getElementById("guessesrem").innerHTML = startingguess;
+    document.getElementById("losses").innerHTML = lossesnumber;
+    document.getElementById("wins").innerHTML = winsnumber;
 }
 
