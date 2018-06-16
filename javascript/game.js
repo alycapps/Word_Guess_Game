@@ -1,4 +1,4 @@
-var word = ["Miss Saigon", "Les Mis", "Cabaret", "A Bronx Tale", "Anastasia", "The Addams Family", "Dear Evan Hansen", "Hamilton", "Annie", "The King and I", "Chicago", "Beauty and the Beast", "The Book of Mormon", "Little Shop of Horrors", "The Phantom of the Opera", "Cats", "Once on this Island", "Sweeney Todd", "Hedwig and the Angry Inch", "Matilda the Musical", "Newsies", "Pippin", "The Pirates of Penzance", "Avenue Q", "School of Rock", "Something Rotten"];
+var word = ["miss saigon", "les mis", "cabaret", "a bronx tale", "anastasia", "the addams family", "dear evan hansen", "hamilton", "annie", "the king and i", "chicago", "beauty and the beast", "the book of mormon", "little shop of horrors", "the phantom of the opera", "cats", "once on this island", "sweeney todd", "hedwig and the angry inch", "matilda the musical", "newsies", "pippin", "the pirates of penzance", "avenue q", "school of rock", "something rotten"];
 var guesses = document.getElementById("guessedletters");
 guesses = [];
 var guessesrem = document.getElementById("guessesrem");
@@ -33,23 +33,6 @@ function underscores(a) {
     return characters;
 }
 
-function replace(b) {
-    for (var w=0; w < compword.length; w++) {
-        var index = compword.indexOf(b);
-        if (b === compword[w]) {
-        //    displayedword[w] = b;
-           var m = displayedword[0, w] + b + displayedword[w+1];
-            console.log(displayedword[0, w] + b + displayedword[w+1]);
-        }
-        // console.log("index" + index);
-        // console.log("1stguess" + displayedword);
-        // displayedword.replace(displayedword.charAt(index), guess);
-        // console.log("guess" + displayedword);
-        console.log("displayedword" + displayedword);
-        wordlocation.innerHTML = m;
-    }
-}
-
 //display underscores on page
 var displayedword = underscores(compword);
 wordlocation.innerHTML = displayedword;
@@ -69,17 +52,9 @@ document.onkeyup = function(event) {
             // check if letter has already been chosen
             //if guess is not last letter in guesses array print new letter chosen
             if (guesses.indexOf(guess) === guesses.length -1) {
-  
-                
-                //won game
-                if (displayedword === compword) {
-                    wins++;
-                    startingguess = 8;
-                    guesses = [];
-                }
         
                 //if correct fill in the blank
-                else if (compword.includes(guess)) {
+                if (compword.includes(guess)) {
                     console.log("correct letter");
                     // fill in blanks with guessed letters
                     var rewriteword = ""; 
@@ -93,7 +68,19 @@ document.onkeyup = function(event) {
                         console.log("replaced" + rewriteword);
                     }
                     wordlocation.innerText = rewriteword;
-                    
+                    //won game
+                        if (rewriteword == compword) {
+                            wins++;
+                            startingguess = 8;
+                            guesses = [];
+                            console.log("you win")
+                            compword = word[Math.floor(Math.random() * (word.length))];
+                            console.log("computer word: " + compword);
+                            underscores(compword);
+                            displayedword = underscores(compword);
+                            wordlocation.innerHTML = displayedword;
+                        }
+
                 }
 
                 //else guesses go down & letter shown in letters guessed
@@ -109,6 +96,7 @@ document.onkeyup = function(event) {
                     guesses = [];
                 }
             }
+
 
             // else if duplicate letter
             else {
