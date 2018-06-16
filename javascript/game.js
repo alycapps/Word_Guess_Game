@@ -2,7 +2,7 @@ var word = ["miss saigon", "les mis", "cabaret", "a bronx tale", "anastasia", "t
 var guesses = document.getElementById("guessedletters");
 guesses = [];
 var guessesrem = document.getElementById("guessesrem");
-var startingguess = 8;
+var startingguess = 6;
 guessesrem.innerText = startingguess;
 var wordlocation = document.getElementById("wordlocation");
 var wins = document.getElementById("wins");
@@ -48,7 +48,6 @@ document.onkeyup = function(event) {
             var currentword = wordlocation.innerText;
 
             // check if letter has already been chosen
-            //if guess is not last letter in guesses array print new letter chosen
             if (guesses.indexOf(guess) === -1) {
                 guesses.push(event.key);
 
@@ -67,12 +66,14 @@ document.onkeyup = function(event) {
                         console.log("replaced" + rewriteword);
                     }
                     wordlocation.innerText = rewriteword;
-                    //won game
+
+                    //win game if word is complete
                         if (rewriteword == compword) {
                             winsnumber++;
-                            startingguess = 8;
+                            startingguess = 6;
                             guesses = [];
                             console.log("you win")
+                            //choose and display new word
                             compword = word[Math.floor(Math.random() * (word.length))];
                             console.log("computer word: " + compword);
                             underscores(compword);
@@ -82,16 +83,17 @@ document.onkeyup = function(event) {
 
                 }
 
-                //else guesses go down & letter shown in letters guessed
+                //if guess is wrong
                 else if (startingguess > 0) {
                     console.log("wrong letter");
                     startingguess--;
                 }
 
+                //if out of guesses lose game
                 else {
                     lossesnumber++;
                     console.log("losses" + lossesnumber);
-                    startingguess = 8;
+                    startingguess = 6;
                     guesses = [];
                 }
             }
