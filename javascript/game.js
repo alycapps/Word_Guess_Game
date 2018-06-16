@@ -14,7 +14,6 @@ losses.innerText = lossesnumber;
 
 //random word chosen
 var compword = word[Math.floor(Math.random() * (word.length))];
-    console.log("computer word: " + compword);
 
 //underscores of word shown
 function underscores(a) {
@@ -29,7 +28,6 @@ function underscores(a) {
             characters += "-";
         }
     }
-    console.log(characters); 
     return characters;
 }
 
@@ -40,11 +38,9 @@ wordlocation.innerHTML = displayedword;
 //player guesses letter
 document.onkeyup = function(event) {
     var guess = event.key;
-    console.log("player guess: " + guess);
      
     //check if letter was chosen and not number or something
         if (event.keyCode >=65 && event.keyCode <=90) {
-            console.log("guesses array: " + guesses)
             var currentword = wordlocation.innerText;
 
             // check if letter has already been chosen
@@ -53,7 +49,6 @@ document.onkeyup = function(event) {
 
                 //if correct fill in the blank
                 if (compword.includes(guess)) {
-                    console.log("correct letter");
                     // fill in blanks with guessed letters
                     var rewriteword = ""; 
                     for (var w=0; w < compword.length; w++) {
@@ -63,19 +58,17 @@ document.onkeyup = function(event) {
                         else {
                             rewriteword += currentword[w];
                         }
-                        console.log("replaced" + rewriteword);
                     }
                     wordlocation.innerText = rewriteword;
 
                     //win game if word is complete
                         if (rewriteword == compword) {
+                            alert("And the Tony goes to " + compword + "!")
                             winsnumber++;
                             startingguess = 6;
                             guesses = [];
-                            console.log("you win")
                             //choose and display new word
                             compword = word[Math.floor(Math.random() * (word.length))];
-                            console.log("computer word: " + compword);
                             underscores(compword);
                             displayedword = underscores(compword);
                             wordlocation.innerHTML = displayedword;
@@ -85,16 +78,20 @@ document.onkeyup = function(event) {
 
                 //if guess is wrong
                 else if (startingguess > 0) {
-                    console.log("wrong letter");
                     startingguess--;
                 }
 
                 //if out of guesses lose game
                 else {
+                    alert("Try again, the word was " + compword)
                     lossesnumber++;
-                    console.log("losses" + lossesnumber);
                     startingguess = 6;
                     guesses = [];
+                    //choose and display new word
+                    compword = word[Math.floor(Math.random() * (word.length))];
+                    underscores(compword);
+                    displayedword = underscores(compword);
+                    wordlocation.innerHTML = displayedword;
                 }
             }
 
