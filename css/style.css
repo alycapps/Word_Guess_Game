@@ -34,6 +34,16 @@ p {
     font-size: 25px;
 }
 
+#mobileOnly {
+    visibility: hidden;
+  }
+
+@media only screen and (max-width: 600px) {
+    #mobileOnly {
+      visibility: visible;
+    }
+  }
+
 /* Teal 0285A7 -- 2 133 167
 Blue 4396DF -- 67 150 223
 Goldenrod DAA520 -- 218 165 32

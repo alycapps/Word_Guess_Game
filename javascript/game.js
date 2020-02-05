@@ -107,6 +107,11 @@ document.onkeyup = function(event) {
         alert("Please choose a letter.");
     }
 
+    if ((typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1)) {
+        console.log("mobile")
+    }
+
+
     //connect to html
     document.getElementById("guessedletters").innerHTML = guesses;
     document.getElementById("guessesrem").innerHTML = startingguess;
